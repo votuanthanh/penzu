@@ -32,7 +32,7 @@
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                        <input class="input-100 form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus type="text">
+                        <input class="input100 {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus type="text">
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -45,7 +45,7 @@
                         <span class="btn-show-pass">
                             <i class="zmdi zmdi-eye"></i>
                         </span>
-                        <input class="input100 form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required type="password" name="password">
+                        <input class="input100 {{ $errors->has('password') ? ' is-invalid' : '' }}" required type="password" name="password">
                          @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
