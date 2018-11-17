@@ -54,13 +54,15 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label" for="password">Confirm Password</label>
                                     <input id="password-confirm" type="password" class="form-control input--style-4" name="password_confirmation" required>
                                 </div>
-                            </div>
+                            </div>        
+                         
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label" for="address">Address</label>
@@ -68,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+           
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -120,7 +122,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
                         </div>

@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/journal', 'JournalController@index')->name('journal.index');
+
+Route::get('/journal/create', 'JournalController@create')->name('journal.create');
+Route::post('/journal', 'JournalController@store')->name('journal.store');
+
