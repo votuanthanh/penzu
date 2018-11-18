@@ -29,9 +29,10 @@
 							</thead>
 							<tbody>
 								@foreach ($journals as $journal)
+									@foreach ($journal->users as $user)
 								<tr>
 									<td>{{ $journal->id }}</td>
-									<td>{{ $journal->users->name}}</td>
+									<td>{{ $user->fullname }}</td>
 									<td>{{ $journal->title}}</td>
 									<td>{{ $journal->description}}</td>
 									<td>{{ $journal->created_at}}</td>
@@ -43,6 +44,7 @@
 										</div>
 									</td>
 								</tr>
+									@endforeach
 								@endforeach
 							</tbody>
 						</table>

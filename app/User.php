@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('\App\Journal');
     }
+
+    public function getFullNameAtrribute()
+    {
+        return $this->getAttribute('first_name') .' ' . $this->getAttribute('last_name');   
+    }
 }
