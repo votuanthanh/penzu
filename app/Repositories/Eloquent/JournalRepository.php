@@ -11,6 +11,6 @@ class JournalRepository implements JournalRepositoryInterface
 {
 	public function getAllJournal()
 	{
-		return Journal::with('user')->orderBy('created_at', 'DESC')->paginate(10);
+		return Journal::with('users')->orderBy('created_at', 'DESC')->paginate(10);
 	}
 }
