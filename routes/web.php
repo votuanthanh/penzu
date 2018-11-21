@@ -19,10 +19,22 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//test thu di e
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/journal', 'JournalController@index')->name('journal.index');
+Route::group(['prefix' => 'journal', 'middleware' => ['auth']], function() {
+	Route::get('/', 'JournalController@index')->name('journal.index');
+	Route::get('create', 'JournalController@create')->name('journal.create');
+	Route::post('/', 'JournalController@store')->name('journal.store');
+	Route::get('show/{id}', 'JournalController@show')->name('journal.show');
+	Route::get('{id}/edit', 'JournalController@edit')->name('journal.edit');
+	Route::put('update/{id}', 'JournalController@update')->name('journal.update');
+	Route::delete('{id}','JournalController@delete')->name('journal.delete');
+});
 
-Route::get('/journal/create', 'JournalController@create')->name('journal.create');
-Route::post('/journal', 'JournalController@store')->name('journal.store');
+Route::group(['prefix' => 'album', 'middleware' => ['auth']], function() {
+	Route::get('create', 'AlbumController@create')->name('album.create');
+	Route::post('/', 'AlbumController@store')->name('album.store');
+});
+
 

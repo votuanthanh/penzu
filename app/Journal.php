@@ -11,12 +11,12 @@ class Journal extends Model
 
     public function comments()
     {
-    	return $this->hasMany('\App\Comment');
+    	return $this->hasMany('\App\User', 'comments', 'journal_id', 'user_id');
     }
 
-    public function users()
+    public function user()
     {
-    	return $this->belongsToMany('\App\User');
+    	return $this->belongsTo('\App\User');
     }
 
     public function tags()
