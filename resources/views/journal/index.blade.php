@@ -15,8 +15,7 @@
 					<div class="card-body">
 						<div class="d-flex flex-row">
 							<a href="{{ route('journal.create')}}" class="btn btn-primary my-1">Create journal</a>
-						
-							<a href="{{ route('album.create')}}" class="btn btn-primary my-1 ml-auto">Create album</a>
+							<a href="{{ route('journal.export')}}" class="btn btn-warning my-1">Export journal</a>					<a href="{{ route('album.create')}}" class="btn btn-primary my-1 ml-auto">Create album</a>
 						</div>
 						<table class="table">
 							<thead class="thead-dark">
@@ -30,7 +29,6 @@
 							</thead>
 							<tbody>
 								@foreach ($journals as $journal)
-									
 								<tr>
 									<td>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</td>
 									<td>{{ $journal->title}}</td>
@@ -51,7 +49,6 @@
 										</div>
 									</td>
 								</tr>
-									
 								@endforeach
 							</tbody>
 						</table>

@@ -30,6 +30,7 @@ Route::group(['prefix' => 'journal', 'middleware' => ['auth']], function() {
 	Route::get('{id}/edit', 'JournalController@edit')->name('journal.edit');
 	Route::put('update/{id}', 'JournalController@update')->name('journal.update');
 	Route::delete('{id}','JournalController@delete')->name('journal.delete');
+	Route::get('/pdf','JournalController@exportPDF')->name('journal.export');
 });
 
 Route::group(['prefix' => 'album', 'middleware' => ['auth']], function() {
