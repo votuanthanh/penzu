@@ -14,6 +14,7 @@ use App\Comment;
 use App\Repositories\Eloquent\JournalRepository;
 use App\Repositories\Contracts\JournalRepositoryInterface;
 use Auth;
+use PDF;
 
 class JournalController extends Controller
 {
@@ -97,5 +98,16 @@ class JournalController extends Controller
                     ->route('journal.index')
                     ->with('level', 'success')
                     ->with('message', 'Journal was successfully deleted'); 
+    }
+
+    public function exportPDF()
+    {
+        $data = Journal::get();
+    // Send data to the view using loadView function of PDF facade
+        $pdf = PDF::loadView('journal.export', compact('data'));
+        // If you want to store the generated pdf to the server then you can use the store function
+        $pdf->save(public_path().'journal.pdf');
+        // Finally, you can download the file using download function
+        return $pdf->download('journal.pdf');
     }
 }
