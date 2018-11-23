@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 
 Auth::routes();
@@ -23,7 +19,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'journal', 'middleware' => ['auth']], function() {
-	Route::get('/', 'JournalController@index')->name('journal.index');
 	Route::get('create', 'JournalController@create')->name('journal.create');
 	Route::post('/', 'JournalController@store')->name('journal.store');
 	Route::get('show/{id}', 'JournalController@show')->name('journal.show');
@@ -32,6 +27,8 @@ Route::group(['prefix' => 'journal', 'middleware' => ['auth']], function() {
 	Route::delete('{id}','JournalController@delete')->name('journal.delete');
 	Route::get('/pdf','JournalController@exportPDF')->name('journal.export');
 });
+Route::resource('journal','JournalController');
+Route::get('/', 'JournalController@index')->name('journal.index');
 
 Route::group(['prefix' => 'album', 'middleware' => ['auth']], function() {
 	Route::get('create', 'AlbumController@create')->name('album.create');
