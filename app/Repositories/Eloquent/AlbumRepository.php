@@ -12,7 +12,7 @@ class AlbumRepository implements AlbumRepositoryInterface
 {
 	public function getAllAlbum()
 	{
-		return Album::with('user')->orderBy('created_at', 'DESC')->paginate(10);
+		return Album::with('user')->orderBy('created_at', 'DESC')->simplePaginate(5);
 	}
 
 	public function showAlbum($id) 

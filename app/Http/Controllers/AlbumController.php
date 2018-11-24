@@ -9,6 +9,7 @@ use Illuminate\Validation\Validator;
 use App\Http\Requests\CreateAlbumRequest;
 use App\Journal;
 use App\User;
+use App\Album;
 
 use App\Repositories\Eloquent\AlbumRepository;
 use App\Repositories\Contracts\AlbumRepositoryInterface;
@@ -25,14 +26,14 @@ class AlbumController extends Controller
 
     public function index()
     {
-        $album = $this->albumRepository->getAllAlbum();
+        $albums = $this->albumRepository->getAllAlbum();
 
-        return view('album.index', ['album' => $album]);
+        return view('album.index', ['albums' => $albums]);
     }
 
     public function show($id)
     {
-        $album = $this->albumRepository->show($id);
+        $album = $this->albumRepository->showAlbum($id);
 
         return view('album.show', ['album' => $album]);
     }
@@ -48,7 +49,7 @@ class AlbumController extends Controller
         // $id = Auth::id();
 
         try {
-            $album = new album($request->all());
+            $album = new Album($request->all());
             
             if ($user->albums()->save($album))
             {
@@ -67,7 +68,7 @@ class AlbumController extends Controller
 
     public function edit($id)
     {
-       $album = $this->albumRepository->show($id);
+       $album = $this->albumRepository->showAlbum($id);
 
         return view('album.edit', ['album' => $album]);
     }
