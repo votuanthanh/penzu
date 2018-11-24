@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<title>Penzu</title>
+	<title>Penzu-Album</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
@@ -252,52 +252,11 @@
 			</div>
 		@endif
 			<div class="row">
-				@foreach ($journals as $journal)
-				<div class="col-lg-4 col-md-6">
-					
-					<div class="card h-auto w-auto">
-						
-						<div class="single-post post-style-4">
-
-							<div class="display-table">
-								<h4 class="title display-table-cell"><a href="#"><b>{{ $journal->title }}</b></a></h4>
-							</div>
-							<div class="avatar-area">
-								<p class="name" style="font-style: italic;">{{$journal->user->first_name}} {{$journal->user->last_name}}</p>
-								<h6 class="date"> {{$journal->created_at}}</h6>
-							</div>
-							<ul class="post-footer">
-								@if(!Auth::check() || Auth::user()->id != $journal->user_id)
-									<li style="
-										width: 100%;
-									    display: inline-block;
-									    border-right: 1px solid #fff;
-									    background: #EDF3F3;
-									">
-    							<a href="{{ route('journal.show', $journal->id) }}" title="Show"><i class="ion-eye"></i></a></li>
-    							@else 
-    							<li><a href="{{ route('journal.show', $journal->id) }}" title="Show"><i class="ion-eye"></i></a></li>
-								@endif
-								
-								@if(Auth::check())
-									@if(Auth::user()->id == $journal->user_id)
-									<li><a href="{{ route('journal.edit', $journal->id) }}"><i class="ion-android-create" title="Update"></i></a></li>									
-									@endif
-								@endif
-							</ul>
-
-						</div><!-- single-post -->
-						
-
-					</div><!-- card -->
-				</div><!-- col-lg-4 col-md-6 -->
-				@endforeach
+				
 
 			</div><!-- row -->
 
-			<!-- <a class="load-more-btn" href="#"><b>LOAD MORE</b></a> -->
-			<div class="d-flex justify-content-center">{{ $journals->links()}}</div> 
-			
+			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
 			<div class="menu pmd-floating-action"  role="navigation"> 
 				@if(Auth::check())
 				<a class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CREATE A JOURNAL" data-toggle="modal" data-target="#myModal"> 
@@ -317,7 +276,7 @@
 					<span class="pmd-floating-hidden">Dialpad</span> 
 					<i class="material-icons">dialpad</i> 
 				</a> 
-				<a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" title="Action" href="javascript:void(0);"> 
+				<a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" href="javascript:void(0);"> 
 					<span class="pmd-floating-hidden">Primary</span>
 					<i class="material-icons pmd-sm">add</i> 
 				</a> 

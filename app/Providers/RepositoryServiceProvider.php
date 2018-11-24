@@ -25,7 +25,10 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             'App\Repositories\Contracts\JournalRepositoryInterface',
-            'App\Repositories\Eloquent\JournalRepository'
+            'App\Repositories\Eloquent\JournalRepository',
+            'App\Repositories\Contracts\AlbumRepositoryInterface',
+            'App\Repositories\Eloquent\AlbumRepository'
+
         );
     }
 }
