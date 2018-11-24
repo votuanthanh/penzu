@@ -196,15 +196,15 @@
 	<section class="blog-area section">
 		<div class="container">
 			<!-- Modal -->
-			<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal fade" id="myModalAlbum" role="dialog">
 			  	<div class="modal-dialog">
 				<!-- Modal content-->
 					<div class="modal-content">
 					  	<div class="modal-header">
-							<h4 class="modal-title">Create Journal</h4>
+							<h4 class="modal-title">Create Album</h4>
 					  	</div>
 					  	<div class="modal-body">
-							<form method="POST" enctype="multipart/form-data" action="{{ route('journal.store') }}">
+							<form method="POST" enctype="multipart/form-data" action="{{ route('album.store') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -218,17 +218,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="description" class="col-sm-4 col-form-label text-md-right">Description</label>
-                            <div class="col-md-6">
-                                <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{old('description')}}</textarea>
-                                @if ($errors->has('description'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        
                         
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
@@ -252,18 +242,59 @@
 			</div>
 		@endif
 			<div class="row">
-				
+				@foreach ($albums as $album)
+				<div class="col-lg-4 col-md-6">
+					
+					<div class="card h-auto w-auto">
+						
+						<div class="single-post post-style-4">
 
+							<div class="display-table">
+								<h4 class="title display-table-cell"><a href="#"><b>{{ $album->title }}</b></a></h4>
+							</div>
+							<div class="avatar-area">
+								<p class="name" style="font-style: italic;">{{$album->user->first_name}} {{$album->user->last_name}}</p>
+								<h6 class="date"> {{$album->created_at}}</h6>
+							</div>
+							<ul class="post-footer">
+								@if(!Auth::check() || Auth::user()->id != $album->user_id)
+									<li style="
+										width: 100%;
+									    display: inline-block;
+									    border-right: 1px solid #fff;
+									    background: #EDF3F3;
+									">
+    							<a href="{{ route('album.show', $album->id) }}" title="Show"><i class="ion-eye"></i></a></li>
+    							@else 
+    							<li><a href="{{ route('album.show', $album->id) }}" title="Show"><i class="ion-eye"></i></a></li>
+								@endif
+								
+								@if(Auth::check())
+									@if(Auth::user()->id == $album->user_id)
+									<li><a href="{{ route('album.edit', $album->id) }}"><i class="ion-android-create" title="Update"></i></a></li>									
+									@endif
+								@endif
+							</ul>
+
+						</div><!-- single-post -->
+						
+
+					</div><!-- card -->
+				</div><!-- col-lg-4 col-md-6 -->
+				@endforeach
 			</div><!-- row -->
 
-			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
+			
+
+			<div class="d-flex justify-content-center">{{ $albums->links()}}</div> 
+			
 			<div class="menu pmd-floating-action"  role="navigation"> 
 				@if(Auth::check())
 				<a class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CREATE A JOURNAL" data-toggle="modal" data-target="#myModal"> 
 					<span class="pmd-floating-hidden">CREATE A JOURNAL</span>
 					<i class="material-icons">border_color</i>
 				</a> 
-				<a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="MANAGE ALBUM"> 
+				<a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="MANAGE ALBUM" data-toggle="modal" data-target="#myModalAlbum"> 
 					<span class="pmd-floating-hidden">ALBUM</span> 
 					<i class="material-icons">photo_library</i> 
 				</a>
