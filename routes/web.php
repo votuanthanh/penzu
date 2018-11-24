@@ -33,6 +33,11 @@ Route::get('/', 'JournalController@index')->name('journal.index');
 Route::group(['prefix' => 'album', 'middleware' => ['auth']], function() {
 	Route::get('create', 'AlbumController@create')->name('album.create');
 	Route::post('/', 'AlbumController@store')->name('album.store');
+	Route::get('show/{id}', 'AlbumController@show')->name('album.show');
+	Route::get('{id}/edit', 'AlbumController@edit')->name('album.edit');
+	Route::put('update/{id}', 'AlbumController@update')->name('album.update');
+	Route::delete('{id}', 'AlbumController@delete')->name('album.delete');
 });
+Route::get('/album', 'AlbumController@index')->name('album.index');
 
 
