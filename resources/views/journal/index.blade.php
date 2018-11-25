@@ -36,7 +36,7 @@
 </head>
 <body >
 
-	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+	<nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
         <div class="container">
             <a class="navbar-brand" href="{{ route('journal.index') }}">
                 {{ __('Penzu') }}
@@ -298,7 +298,7 @@
 			<!-- <a class="load-more-btn" href="#"><b>LOAD MORE</b></a> -->
 			<div class="d-flex justify-content-center">{{ $journals->links()}}</div> 
 			
-			<div class="menu pmd-floating-action"  role="navigation"> 
+			<div class="menu pmd-floating-action" style="z-index: 9999;" role="navigation"> 
 				@if(Auth::check())
 				<a class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CREATE A JOURNAL" data-toggle="modal" data-target="#myModal"> 
 					<span class="pmd-floating-hidden">CREATE A JOURNAL</span>

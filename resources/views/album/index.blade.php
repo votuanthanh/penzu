@@ -288,7 +288,7 @@
 
 			<div class="d-flex justify-content-center">{{ $albums->links()}}</div> 
 			
-			<div class="menu pmd-floating-action"  role="navigation"> 
+			<div class="menu pmd-floating-action" style="z-index: 9999;" role="navigation"> 
 				@if(Auth::check())
 				<a class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CREATE A JOURNAL" data-toggle="modal" data-target="#myModal"> 
 					<span class="pmd-floating-hidden">CREATE A JOURNAL</span>
