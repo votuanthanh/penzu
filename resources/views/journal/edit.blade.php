@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">EDIT A JOURNAL</div>
-
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('journal.update', $journal) }}">
                         @csrf
@@ -40,9 +39,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     SAVE
                                 </button>
-
                             </div>
-
                         </div>
                     </form>
                         <form action="{{route('journal.delete', $journal->id)}}" method="post">
