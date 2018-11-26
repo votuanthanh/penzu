@@ -50,7 +50,7 @@
                 <ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link" href="{{route('journal.index')}}">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{route('album.index')}}">Album</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{route('user.edit')}}">Profile</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

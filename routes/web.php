@@ -38,6 +38,14 @@ Route::group(['prefix' => 'album', 'middleware' => ['auth']], function() {
 	Route::put('update/{id}', 'AlbumController@update')->name('album.update');
 	Route::delete('{id}', 'AlbumController@delete')->name('album.delete');
 });
+
+
 Route::get('/album', 'AlbumController@index')->name('album.index');
+Route::group(['prefix' => 'user', 'middleware' => ['auth']], function() {
+	Route::get('edit', 'UserController@edit')->name('user.edit');
+	Route::put('update', 'UserController@update')->name('user.update');
+
+});
+
 
 
