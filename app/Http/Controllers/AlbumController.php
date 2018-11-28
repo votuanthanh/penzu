@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Validator;
 
 use App\Http\Requests\CreateAlbumRequest;
-use App\Journal;
 use App\User;
 use App\Album;
 

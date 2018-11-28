@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 use App\Journal;
 use App\Album;
+use App\Image;
 use App\Repositories\Contracts\AlbumRepositoryInterface;
 
 /**
@@ -12,12 +13,12 @@ class AlbumRepository implements AlbumRepositoryInterface
 {
 	public function getAllAlbum()
 	{
-		return Album::with('user')->orderBy('created_at', 'DESC')->simplePaginate(5);
+		return Album::with('images')->simplePaginate(6);
 	}
 
 	public function showAlbum($id) 
 	{
-		return Album::find($id);
+		return Album::with('images')->find($id);
 	}
 
 	public function update(array $request, $id)
