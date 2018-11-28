@@ -218,8 +218,7 @@
                                 @endif
                             </div>
                         </div>
-                        
-                        
+                                                
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -240,7 +239,7 @@
 			<div class="alert alert-{{ session('level') }}" role="alert">
 				<strong>{{session('message')}}</strong>
 			</div>
-		@endif
+			@endif
 			<div class="row">
 				@foreach ($albums as $album)
 				<div class="col-lg-4 col-md-6">
@@ -284,9 +283,10 @@
 				@endforeach
 			</div><!-- row -->
 
-			
-
 			<div class="d-flex justify-content-center">{{ $albums->links()}}</div> 
+
+
+		
 			
 			<div class="menu pmd-floating-action" style="z-index: 9999;" role="navigation"> 
 				@if(Auth::check())

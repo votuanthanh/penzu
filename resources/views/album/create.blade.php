@@ -22,7 +22,21 @@
                                 @endif
                             </div>
                         </div>
-                                               
+                        
+                        <div class="form-group row">
+                            <label for="image" class="col-sm-4 col-form-label text-md-right">Image</label>
+                            <div class="col-md-6">
+                                <div class="custom-file">
+                                    <input type="file" name="image" class="custom-file-input{{ $errors->has('image') ? ' is-invalid' : '' }}" id="image">
+                                    <label class="custom-file-label" for="image">Choose file</label>
+                                    @if ($errors->has('image'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>                       
                         
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
