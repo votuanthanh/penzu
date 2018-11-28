@@ -36,6 +36,9 @@
                                 <a class="btn btn-primary" href="{{route('journal.index')}}">
                                     BACK
                                 </a>
+                                <a class="btn btn-primary" href="{{route('journal.export', $journal->id)}}">
+                                    EXPORT TO PDF
+                                </a>
                             </div>
                         </div>
                     </form>

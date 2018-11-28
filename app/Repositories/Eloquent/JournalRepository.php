@@ -16,7 +16,7 @@ class JournalRepository implements JournalRepositoryInterface
 
 	public function show($id) 
 	{
-		return Journal::find($id);
+		return Journal::with('user')->where('id',$id)->first();
 	}
 
 	public function update(array $request, $id)
