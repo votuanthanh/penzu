@@ -1,21 +1,29 @@
-<table class="table">
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<table class="table">
 	<thead class="thead-dark">
 		<tr>									
 			<th>User</th>
 			<th>Title</th>
 			<th>Description</th>
 			<th>Created at</th>
-			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
-		@foreach ($data as $journal)
+	
 		<tr>
-			<td>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</td>
-			<td>{{ $journal->title}}</td>
-			<td>{{ $journal->description}}</td>
-			<td>{{ $journal->created_at}}</td>
+			<td>{{ $data->user->first_name }} {{ $data->user->last_name }}</td>
+			<td>{{ $data->title}}</td>
+			<td>{{ $data->description}}</td>
+			<td>{{ $data->created_at}}</td>
 		</tr>
-		@endforeach
+	
 	</tbody>
 </table>
+</body>
+</html>
+

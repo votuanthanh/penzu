@@ -101,9 +101,10 @@ class JournalController extends Controller
                     ->with('message', 'Journal was successfully deleted'); 
     }
 
-    public function exportPDF()
+    public function exportPDF($id)
     {
-        $data = Journal::get();
+        $data = $this->journalRepository->show($id);
+        
     // Send data to the view using loadView function of PDF facade
         $pdf = PDF::loadView('journal.export', compact('data'));
         // If you want to store the generated pdf to the server then you can use the store function
