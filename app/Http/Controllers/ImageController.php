@@ -48,6 +48,9 @@ class ImageController extends Controller
     {
     	$image = Image::find($id);
     	$image->delete();
+        if(File::exists($image->description)) {
+            File::delete($image->description);
+        }
 
     	return redirect()
             	->route('album.show', ['id' => $image->album_id])
