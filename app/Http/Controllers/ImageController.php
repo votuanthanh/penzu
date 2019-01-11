@@ -7,7 +7,7 @@ use App\Http\Requests\CreateImageRequest;
 use App\Album;
 use App\Image;
 use Auth;
-
+use File;
 class ImageController extends Controller
 {
 
@@ -30,6 +30,7 @@ class ImageController extends Controller
         $fileUpload->move($path, $nameFileUpload);
         $image->description = $nameFileUpload;
         $image->album_id = $album;
+        // dd($path);
         $image->save();
        //	try {
         	// if ($album->images()->save($image))
@@ -46,10 +47,12 @@ class ImageController extends Controller
 
     public function delete($id)
     {
+        $path = public_path('/images/albumImages');
+
     	$image = Image::find($id);
     	$image->delete();
-        if(File::exists($image->description)) {
-            File::delete($image->description);
+        if(File::exists($path.'/'.$image->description)) {
+            File::delete($path.'/'.$image->description);
         }
 
     	return redirect()
