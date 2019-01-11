@@ -71,6 +71,9 @@
                         <a class="txt2" href="register">
                             Sign Up
                         </a>
+
+                        <a href="{{ URL::to('auth/facebook') }}">Facebook Login</a>
+                        <a href="{{ URL::to('auth/google') }}">Google Login</a>
                     </div>
                 </form>
             </div>

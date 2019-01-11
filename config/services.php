@@ -40,4 +40,10 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id' => '2910483455644371',
+        'client_secret' => '4b41f56b24918f3f6e879428b290d677',
+        'redirect' => 'http://localhost:8080/penzu/public/auth/facebook/callback',
+    ],
+
 ];

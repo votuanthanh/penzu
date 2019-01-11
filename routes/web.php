@@ -56,5 +56,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth']], function() {
 
 });
 
-
+Route::get('/auth/facebook', 'SocialAuthController@redirectToProvider');
+Route::get('/auth/facebook/callback', 'SocialAuthController@handleProviderCallback');
 

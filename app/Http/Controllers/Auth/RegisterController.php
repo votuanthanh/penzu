@@ -73,6 +73,8 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'birthday' => date('Y-m-d', strtotime($data['birthday'])),
             'address' => $data['address'],
+            'provider' => 1,
+            'provider_id' => 1,
             'gender' => $data['gender'],
         ]);
     }

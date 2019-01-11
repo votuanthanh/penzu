@@ -22,6 +22,8 @@ $factory->define(App\User::class, function (Faker $faker) {
         'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'address' => $faker->address(),
         'gender' => rand(0,1),
+        'provider' => 1,
+        'provider_id' => 1,
         'remember_token' => str_random(10),
     ];
 });
