@@ -13,9 +13,9 @@ use Auth;
 class SocialAuthController extends Controller
 {
 
-   public function redirectToProvider()
+   public function redirectToProvider($provider)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
  
     /**
@@ -23,9 +23,9 @@ class SocialAuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-        $user = Socialite::driver('facebook')->user();
+        $user = Socialite::driver($provider)->user();
  	
         $authUser = $this->findOrCreateUser($user);
         
@@ -37,19 +37,19 @@ class SocialAuthController extends Controller
         return redirect()->route('journal.index');
     }
  
-    private function findOrCreateUser($facebookUser){
-        $authUser = User::where('provider_id', $facebookUser->id)->first();
+    private function findOrCreateUser($socialiteUser, $provider){
+        $authUser = User::where('provider_id', $socialiteUser->id)->first();
  
         if($authUser){
             return $authUser;
         }
- 		// dd($facebookUser);
+ 		// dd($socialiteUser);
         return User::create([
-            'first_name' => $facebookUser->name,
-            'password' => $facebookUser->token,
-            'email' => $facebookUser->email,
-            'provider_id' => $facebookUser->id,
-            'provider' => $facebookUser->id,
+            'first_name' => $socialiteUser->name,
+            'password' => $socialiteUser->token,
+            'email' => $socialiteUser->email,
+            'provider_id' => $socialiteUser->id,
+            'provider' => $provider,
         ]);
     }
 }
