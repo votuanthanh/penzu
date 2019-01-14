@@ -27,7 +27,7 @@ class SocialAuthController extends Controller
     {
         $user = Socialite::driver($provider)->user();
  	
-        $authUser = $this->findOrCreateUser($user);
+        $authUser = $this->findOrCreateUser($user, $provider);
         
         // Chỗ này để check xem nó có chạy hay không
         // dd($user);
