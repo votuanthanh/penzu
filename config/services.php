@@ -49,7 +49,7 @@ return [
     'google' => [
         'client_id' => '368282660138-d8ja02uubl7sv6vefp5tmv0h958lbp94.apps.googleusercontent.com',
         'client_secret' => 'xTLmhAuD6kx_w3FJW9Te77Bq',
-        'redirect' => 'http://http://penzu.herokuapp.com/index.php/auth/google/callback',
+        'redirect' => 'http://penzu.herokuapp.com/index.php/auth/google/callback',
     ],
 
 ];
