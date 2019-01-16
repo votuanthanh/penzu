@@ -196,6 +196,20 @@
 
 	<section class="blog-area section">
 		<div class="container">
+			<div class="row">
+		        <div class="col-sm-4 col-sm-offset-3">		            
+	                <div class="form-inline md-form mr-auto mb-4">
+	                	<form method="POST" action="{{ route('journal.search')}}">
+	                	@csrf  
+	                    	<input type="text" class="form-control" name="searchValue" id="searchValue" placeholder="Search" >
+	                   		<button class="btn btn-success" title="Search" type="submit">
+	                    		<i class="ion-search"></i>
+	                    	</button>
+	                    </form>
+	                </div>		           
+		        </div>
+			</div>
+
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
 			  	<div class="modal-dialog">
@@ -206,47 +220,46 @@
 					  	</div>
 					  	<div class="modal-body">
 							<form method="POST" enctype="multipart/form-data" action="{{ route('journal.store') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="title" class="col-sm-4 col-form-label text-md-right">TITLE</label>
-                            <div class="col-md-6">
-                                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title')}}">
-                                @if ($errors->has('title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="description" class="col-sm-4 col-form-label text-md-right">Description</label>
-                            <div class="col-md-6">
-                                <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{old('description')}}</textarea>
-                                @if ($errors->has('description'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="gender" class="col-sm-4 col-form-label text-md-right">Tag</label>
-                            <div class="col-md-6">
-                                <select id="gender" name="gender" class="form-control">
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    SAVE
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        	@csrf
+		                        <div class="form-group row">
+		                            <label for="title" class="col-sm-4 col-form-label text-md-right">TITLE</label>
+		                            <div class="col-md-6">
+		                                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title')}}">
+		                                @if ($errors->has('title'))
+		                                    <span class="invalid-feedback" role="alert">
+		                                        <strong>{{ $errors->first('title') }}</strong>
+		                                    </span>
+		                                @endif
+		                            </div>
+		                        </div>
+		                        <div class="form-group row">
+		                            <label for="description" class="col-sm-4 col-form-label text-md-right">Description</label>
+		                            <div class="col-md-6">
+		                                <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{old('description')}}</textarea>
+		                                @if ($errors->has('description'))
+		                                    <span class="invalid-feedback" role="alert">
+		                                        <strong>{{ $errors->first('description') }}</strong>
+		                                    </span>
+		                                @endif
+		                            </div>
+		                        </div>
+		                        <div class="form-group row">
+		                            <label for="gender" class="col-sm-4 col-form-label text-md-right">Tag</label>
+		                            <div class="col-md-6">
+		                                <select id="gender" name="gender" class="form-control">
+		                                    <option value="1">Male</option>
+		                                    <option value="2">Female</option>
+		                                </select>
+		                            </div>
+		                        </div>
+		                        <div class="form-group row mb-0">
+		                            <div class="col-md-8 offset-md-4">
+		                                <button type="submit" class="btn btn-primary">
+		                                    SAVE
+		                                </button>
+		                            </div>
+		                        </div>
+		                    </form>
 					  	</div>
 					  	<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -259,8 +272,9 @@
 			<div class="alert alert-{{ session('level') }}" role="alert">
 				<strong>{{session('message')}}</strong>
 			</div>
-		@endif
+			@endif
 			<div class="row">
+				
 				@foreach ($journals as $journal)
 				<div class="col-lg-4 col-md-6">
 					

@@ -26,6 +26,7 @@ Route::group(['prefix' => 'journal', 'middleware' => ['auth']], function() {
     Route::put('update/{id}', 'JournalController@update')->name('journal.update');
     Route::delete('{id}','JournalController@delete')->name('journal.delete');
     Route::get('/pdf/{id}','JournalController@exportPDF')->name('journal.export');
+    Route::any('search', 'JournalController@search')->name('journal.search');
 });
 
 Route::resource('journal','JournalController');
