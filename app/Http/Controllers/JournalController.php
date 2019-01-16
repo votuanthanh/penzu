@@ -17,6 +17,7 @@ use App\Repositories\Contracts\JournalRepositoryInterface;
 use Auth;
 use PDF;
 
+
 class JournalController extends Controller
 {
     protected $journalRepository;
@@ -29,7 +30,7 @@ class JournalController extends Controller
     public function index()
     {
         $journals = $this->journalRepository->getAllJournal();
-
+        // dd($journals);
         return view('journal.index', ['journals' => $journals]);
     }
 
@@ -111,5 +112,26 @@ class JournalController extends Controller
         $pdf->save(public_path().'journal.pdf');
         // Finally, you can download the file using download function
         return $pdf->download('journal.pdf');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->searchValue; 
+        $journals = Journal::with('user')
+                    ->select('journals.*', 'users.first_name')
+                    ->join('users', 'users.id', '=', 'journals.user_id')
+                    ->where('title', 'LIKE', '%'.$query.'%')
+                    ->orWhere('first_name', 'LIKE', '%' . $query . '%')
+                    ->orWhere('last_name', 'LIKE', '%' . $query . '%')
+                    ->orderBy('created_at', 'DESC')->simplePaginate(10);
+        
+        if(count($journals) > 0)
+            return view('journal.index',['journals' => $journals])
+                        ->with('level', 'success')
+                        ->with('message', 'Found ' . count($journals) . ' results');
+        else 
+            return view ('journal.index',['journals' => $journals])
+                        ->with('level', 'danger')
+                        ->with('message', 'Cannot find any result');      
     }
 }
