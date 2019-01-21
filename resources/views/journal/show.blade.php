@@ -42,6 +42,39 @@
                             </div>
                         </div>
                     </form>
+
+                    <hr />
+                    <h4>Display Comments</h4>
+                    
+                        <div class="display-comment">
+                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
+                            <p>This is comment</p>
+                        </div>
+                        <div class="display-comment">
+                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
+                            <p>This is comment</p>
+                        </div>
+                        <div class="display-comment">
+                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
+                            <p>This is comment</p>
+                        </div>
+                        <div class="display-comment">
+                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
+                            <p>This is comment</p>
+                        </div>
+
+                    <hr />
+                    <h4>Add comment</h4>
+                    <form method="post" action="#">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="comment_body" class="form-control" placeholder="Your comment here!"/>
+                            <input type="hidden" name="post_id" value="1" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-warning" value="Add Comment"  />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
