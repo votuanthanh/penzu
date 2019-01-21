@@ -11,7 +11,7 @@ class Journal extends Model
 
     public function comments()
     {
-    	return $this->hasMany('\App\User', 'comments', 'journal_id', 'user_id');
+    	return $this->hasMany('\App\Comment');
     }
 
     public function user()

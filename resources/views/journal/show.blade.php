@@ -44,32 +44,31 @@
                     </form>
 
                     <hr />
+                    @if (session('message'))
+                    <div class="alert alert-{{ session('level') }}" role="alert">
+                        <strong>{{session('message')}}</strong>
+                    </div>
+                    @endif
+
                     <h4>Display Comments</h4>
-                    
+
+                        @forelse($journal->comments as $comment)
                         <div class="display-comment">
-                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
-                            <p>This is comment</p>
+                            <strong>{{ $comment->user->first_name }} {{ $comment->user->last_name }}</strong>
+                            <strong>- {{ $comment->created_at->diffForHumans() }}: &nbsp</strong>
+                            <p>{{ $comment->description}}</p>
                         </div>
-                        <div class="display-comment">
-                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
-                            <p>This is comment</p>
-                        </div>
-                        <div class="display-comment">
-                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
-                            <p>This is comment</p>
-                        </div>
-                        <div class="display-comment">
-                            <strong>{{ $journal->user->first_name }} {{ $journal->user->last_name }}</strong>
-                            <p>This is comment</p>
-                        </div>
+                        @empty
+                            <p>Nothing. Let's the first !</p>
+                        @endforelse
 
                     <hr />
                     <h4>Add comment</h4>
-                    <form method="post" action="#">
+                    <form method="post" action="{{ route('comments.store', $journal->id)}}">
                         @csrf
                         <div class="form-group">
                             <input type="text" name="comment_body" class="form-control" placeholder="Your comment here!"/>
-                            <input type="hidden" name="post_id" value="1" />
+                            <input type="hidden" name="journal_id" value="{{$journal->id}}" />
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-warning" value="Add Comment"  />
