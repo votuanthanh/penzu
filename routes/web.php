@@ -15,7 +15,7 @@
 
 Auth::routes();
 
-//test thu di e
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'journal', 'middleware' => ['auth']], function() {
@@ -55,6 +55,12 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth']], function() {
     Route::get('edit', 'UserController@edit')->name('user.edit');
     Route::put('update', 'UserController@update')->name('user.update');
 
+});
+
+Route::group(['prefix' => 'comments', 'middleware' => ['auth']], function() {
+    Route::post('/', 'CommentsController@store')->name('comments.store');
+    Route::delete('{id}', 'CommentsController@delete')->name('comments.delete');
+    Route::put('update/{id}', 'CommentsController@update')->name('comments.update');
 });
 
 Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider');
