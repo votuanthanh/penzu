@@ -20,18 +20,18 @@
 
 	<!-- <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
-	<link href="{{ asset('journal/common-css/bootstrap.css') }}" rel="stylesheet">
+	<link href="{{ asset('journal-css/common-css/bootstrap.css') }}" rel="stylesheet">
 
-	<link href="{{ asset('journal/common-css/floating-button.css') }}" rel="stylesheet">
+	<link href="{{ asset('journal-css/common-css/floating-button.css') }}" rel="stylesheet">
 
-	<link href="{{ asset('journal/common-css/swiper.css') }}" rel="stylesheet">
+	<link href="{{ asset('journal-css/common-css/swiper.css') }}" rel="stylesheet">
 
-	<link href="{{ asset('journal/common-css/ionicons.css') }}" rel="stylesheet">
+	<link href="{{ asset('journal-css/common-css/ionicons.css') }}" rel="stylesheet">
 
 
-	<link href="{{ asset('journal/front-page-category/css/styles.css') }}" rel="stylesheet">
+	<link href="{{ asset('journal-css/front-page-category/css/styles.css') }}" rel="stylesheet">
 
-	<link href="{{ asset('journal/front-page-category/css/responsive.css') }}" rel="stylesheet">
+	<link href="{{ asset('journal-css/front-page-category/css/responsive.css') }}" rel="stylesheet">
 
 </head>
 <body >
@@ -99,7 +99,7 @@
 
 				<div class="swiper-slide">
 					<a class="slider-category" href="category-sidebar.html">
-						<div class="blog-image"><img src="{{ asset('journal/images/category-1-400x250.jpg') }}" alt="Blog Image"></div>
+						<div class="blog-image"><img src="{{ asset('journal-css/images/category-1-400x250.jpg') }}" alt="Blog Image"></div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -114,7 +114,7 @@
 
 				<div class="swiper-slide">
 					<a class="slider-category" href="#">
-						<div class="blog-image"><img src="{{ asset('journal/images/category-2-400x250.jpg') }}" alt="Blog Image"></div>
+						<div class="blog-image"><img src="{{ asset('journal-css/images/category-2-400x250.jpg') }}" alt="Blog Image"></div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -129,7 +129,7 @@
 
 				<div class="swiper-slide">
 					<a class="slider-category" href="#">
-						<div class="blog-image"><img src="{{ asset('journal/images/category-3-400x250.jpg') }}" alt="Blog Image"></div>
+						<div class="blog-image"><img src="{{ asset('journal-css/images/category-3-400x250.jpg') }}" alt="Blog Image"></div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -144,7 +144,7 @@
 
 				<div class="swiper-slide">
 					<a class="slider-category" href="#">
-						<div class="blog-image"><img src="{{ asset('journal/images/category-4-400x250.jpg') }}" alt="Blog Image"></div>
+						<div class="blog-image"><img src="{{ asset('journal-css/images/category-4-400x250.jpg') }}" alt="Blog Image"></div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -159,7 +159,7 @@
 
 				<div class="swiper-slide">
 					<a class="slider-category" href="#">
-						<div class="blog-image"><img src="{{ asset('journal/images/category-5-400x250.jpg') }}" alt="Blog Image"></div>
+						<div class="blog-image"><img src="{{ asset('journal-css/images/category-5-400x250.jpg') }}" alt="Blog Image"></div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -174,7 +174,7 @@
 
 				<div class="swiper-slide">
 					<a class="slider-category" href="#">
-						<div class="blog-image"><img src="{{ asset('journal/images/category-6-400x250.jpg') }}" alt="Blog Image"></div>
+						<div class="blog-image"><img src="{{ asset('journal-css/images/category-6-400x250.jpg') }}" alt="Blog Image"></div>
 
 						<div class="category">
 							<div class="display-table center-text">
@@ -324,7 +324,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="footer-section">
 
-						<a class="logo" href="#"><img src="{{ asset('journal/images/logo.png') }}" alt="Logo Image"></a>
+						<a class="logo" href="#"><img src="{{ asset('journal-css/images/logo.png') }}" alt="Logo Image"></a>
 						<p class="copyright">Bona @ 2017. All rights reserved.</p>
 						<p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
 						<ul class="icons">
@@ -375,15 +375,15 @@
 
 	<!-- SCIPTS -->
 
-	<script src="{{ asset('journal/common-js/jquery-3.1.1.min.js') }}"></script>
+	<script src="{{ asset('journal-css/common-js/jquery-3.1.1.min.js') }}"></script>
 
-	<script src="{{ asset('journal/common-js/tether.min.js') }}"></script>
+	<script src="{{ asset('journal-css/common-js/tether.min.js') }}"></script>
 
-	<script src="{{ asset('journal/common-js/bootstrap.js') }}"></script>
+	<script src="{{ asset('journal-css/common-js/bootstrap.js') }}"></script>
 
-	<script src="{{ asset('journal/common-js/swiper.js') }}"></script>
+	<script src="{{ asset('journal-css/common-js/swiper.js') }}"></script>
 
-	<script src="{{ asset('journal/common-js/scripts.js') }}"></script>
+	<script src="{{ asset('journal-css/common-js/scripts.js') }}"></script>
 
 </body>
 </html>
