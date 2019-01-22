@@ -42,11 +42,11 @@
                             </div>
                         </div>
                     </form>
-                        <form action="{{route('journal.delete', $journal->id)}}" method="post">
-                            {{ csrf_field() }}
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger mr-1">Delete</button>
-                        </form>
+                    <form action="{{route('journal.delete', $journal->id)}}" method="post">
+                        {{ csrf_field() }}
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger mr-1">Delete</button>
+                    </form>
                                          
                 </div>
             </div>

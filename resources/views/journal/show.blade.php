@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+@push('style')
+    <link rel="stylesheet" type="text/css" href="{{ asset('journal-css/comment-journal.css') }}">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+@endpush
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -44,30 +52,50 @@
                     </form>
 
                     <hr />
-                    @if (session('message'))
-                    <div class="alert alert-{{ session('level') }}" role="alert">
-                        <strong>{{session('message')}}</strong>
-                    </div>
-                    @endif
+                    
 
                     <h4>Display Comments</h4>
 
-                        @forelse($journal->comments as $comment)
-                        <div class="display-comment">
-                            <strong>{{ $comment->user->first_name }} {{ $comment->user->last_name }}</strong>
-                            <strong>- {{ $comment->created_at->diffForHumans() }}: &nbsp</strong>
-                            <p>{{ $comment->description}}</p>
+                        @forelse($journal->comments->sortByDesc('created_at') as $comment)
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="thumbnail">
+                                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                                </div><!-- /thumbnail -->
+                            </div><!-- /col-sm-1 -->
+
+                            <div class="col-sm-9">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <strong>{{ $comment->user->first_name }} {{ $comment->user->last_name }}</strong> <span class="text-muted">commented {{ $comment->created_at->diffForHumans() }}: &nbsp</span>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{ $comment->description}}
+                                    </div><!-- /panel-body -->
+                                </div><!-- /panel panel-default -->
+                            </div><!-- /col-sm-5 -->
                         </div>
                         @empty
                             <p>Nothing. Let's the first !</p>
                         @endforelse
 
                     <hr />
-                    <h4>Add comment</h4>
+                    <h4><label for="comment_body">Add comment</label></h4>
                     <form method="post" action="{{ route('comments.store', $journal->id)}}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" name="comment_body" class="form-control" placeholder="Your comment here!"/>
+                            <input id="comment_body" type="text" name="comment_body" require autofocus class="form-control {{ $errors->has('comment_body') ? ' is-invalid' : '' }}" value="{{ old('comment_body')}}" placeholder="Your comment here!"/>
+                            @if (session('message'))
+                            <div class="alert alert-{{ session('level') }}" role="alert">
+                                <strong>{{session('message')}}</strong>
+                            </div>
+                            @endif
+                            @if ($errors->has('comment_body'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('comment_body') }}</strong>
+                                </span>
+                            @endif
                             <input type="hidden" name="journal_id" value="{{$journal->id}}" />
                         </div>
                         <div class="form-group">
