@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         			factory(App\Journal::class)->make());
         	}
         });
+
+        $this->call(CommentTableSeeder::class);
+
     }
 }
