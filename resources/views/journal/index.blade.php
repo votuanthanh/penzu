@@ -33,9 +33,9 @@
 	<link href="{{ asset('journal-css/front-page-category/css/styles.css') }}" rel="stylesheet">
 
 	<link href="{{ asset('journal-css/front-page-category/css/responsive.css') }}" rel="stylesheet">
-
+	
 </head>
-<body >
+<body>
 
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
         <div class="container">
