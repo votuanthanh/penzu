@@ -28,7 +28,7 @@
                                     <img class="img-responsive user-photo" 
                                     src="https://graph.facebook.com/v3.0/{{ $user->provider_id }}/picture?type=normal" alt="Avatar">
                                 @endif
-                            @elseif ($comment->user->provider == 'google')
+                            @elseif ($user->provider == 'google')
                                     <img class="img-responsive user-photo" 
                                             src="https://i.stack.imgur.com/34AD2.jpg" alt="Avatar">
                             @endif
