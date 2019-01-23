@@ -61,7 +61,22 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="thumbnail">
-                                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                                    @if($comment->user->provider_id == 0)
+                                    <img class="img-responsive user-photo" 
+                                    src="{{ $comment->user->avatar }} " alt="Avatar">
+                                    @elseif ($comment->user->provider_id == 1)
+                                    <img class="img-responsive user-photo" src="{{ asset('images/avatarImages/' . $comment->user->avatar) }}" alt="Avatar">
+                                    @elseif ($comment->user->provider == 'facebook')
+                                        @if ($comment->user->avatar)
+                                            <img class="img-responsive user-photo" src="{{ asset('images/avatarImages/' . $comment->user->avatar) }}" alt="Avatar">
+                                        @else    
+                                            <img class="img-responsive user-photo" 
+                                            src="https://graph.facebook.com/v3.0/{{ $comment->user->provider_id }}/picture?type=normal" alt="Avatar">
+                                        @endif
+                                    @elseif ($comment->user->provider == 'google')
+                                        <img class="img-responsive user-photo" 
+                                                src="https://i.stack.imgur.com/34AD2.jpg" alt="Avatar">
+                                    @endif
                                 </div><!-- /thumbnail -->
                             </div><!-- /col-sm-1 -->
 

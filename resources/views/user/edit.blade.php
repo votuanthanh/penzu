@@ -12,7 +12,28 @@
                 </div>
                 @endif
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update') }}">
+
+                    <!-- display avatar -->
+                    <div class="col-sm-3">
+                        <div class="thumbnail">
+                            @if($user->provider_id == 0)
+                            <img class="img-responsive user-photo" 
+                            src="{{ $user->avatar }} " alt="Avatar">
+                            @elseif ($user->provider_id == 1)
+                            <img class="img-responsive user-photo" src="{{ asset('images/avatarImages/' . $user->avatar) }}" alt="Avatar">
+                            @elseif ($user->provider == 'facebook')
+                                @if ($user->avatar)
+                                    <img class="img-responsive user-photo" src="{{ asset('images/avatarImages/' . $user->avatar) }}" alt="Avatar">
+                                @else    
+                                    <img class="img-responsive user-photo" 
+                                    src="https://graph.facebook.com/v3.0/{{ $user->provider_id }}/picture?type=normal" alt="Avatar">
+                                @endif
+                            @endif
+                        </div><!-- /thumbnail -->
+                    </div><!-- /col-sm-1 -->
+                    <!--  -->
+
+                    <form method="POST" action="{{ route('user.update') }} " enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="form-group row">
@@ -67,6 +88,23 @@
                                 <input class="form-control" type="text" name="address" id="address" value="{{ $user->address }}">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="avatar" class="col-sm-4 col-form-label text-md-right">Avatar</label>
+                            <div class="col-md-6">
+                                <div class="custom-file">
+                                    <input type="file" name="avatar" class="custom-file-input{{ $errors->has('avatar') ? ' is-invalid' : '' }}" id="avatar">
+                                    <label class="custom-file-label" for="avatar">Choose file</label>
+                                    @if ($errors->has('avatar'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
