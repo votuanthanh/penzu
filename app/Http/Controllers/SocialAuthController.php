@@ -43,11 +43,12 @@ class SocialAuthController extends Controller
         if($authUser){
             return $authUser;
         }
- 		// dd($socialiteUser);
+ 		
         return User::create([
             'first_name' => $socialiteUser->name,
             'password' => $socialiteUser->token,
             'email' => $socialiteUser->email,
+            'avatar' => $socialiteUser->avatar,
             'provider_id' => $socialiteUser->id,
             'provider' => $provider,
         ]);

@@ -22,8 +22,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'address' => $faker->address(),
         'gender' => rand(0,1),
-        'provider' => 1,
-        'provider_id' => 1,
+        'avatar' => 'http://gravatar.com/avatar/' . md5(strtolower(trim($faker->email))) . '?s=200&d=wavatar',
+        'provider' => 0,
+        'provider_id' => 0,
         'remember_token' => str_random(10),
     ];
 });

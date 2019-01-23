@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->date('birthday')->nullable();
             $table->string('address')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('provider');
             $table->string('provider_id');
             $table->tinyInteger('gender')->nullable();
