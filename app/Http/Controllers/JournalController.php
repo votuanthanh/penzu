@@ -16,7 +16,7 @@ use App\Repositories\Eloquent\JournalRepository;
 use App\Repositories\Contracts\JournalRepositoryInterface;
 use Auth;
 use PDF;
-
+use Alert;
 
 class JournalController extends Controller
 {
@@ -56,16 +56,14 @@ class JournalController extends Controller
             
             if ($user->journals()->save($journal))
             {
+                Alert::success('Congratulations!', 'Journal has been successfully created.');
                 return redirect()
-                    ->route('journal.index')
-                    ->with('level', 'success')
-                    ->with('message', 'Journal was successfully created');
+                    ->route('journal.index');
             }
         } catch (\Exception $e) {
+            Alert::error('Oops...!', 'Journal has not been created.');
             return redirect()
-                    ->route('journal.index')
-                    ->with('level', 'danger')
-                    ->with('message', 'Journal was not created');
+                    ->route('journal.index');
         }
     }
 
@@ -80,26 +78,28 @@ class JournalController extends Controller
     {
         try {
             if ($this->journalRepository->update($request->all(), $id))
+            {
+                Alert::success('Congratulations!', 'Journal has been successfully updated.');
                 return redirect()
-                        ->route('journal.index')
-                        ->with('level', 'success')
-                        ->with('message', 'Journal was successfully updated');
+                    ->route('journal.index');
+            }
 
         } catch (\Exception $e) {
+            Alert::error('Oops...!', 'Journal has not been updated.');
             return redirect()
-                ->route('journal.index')
-                ->with('level', 'danger')
-                ->with('message', 'Journal was not updated');
+                ->route('journal.index');
         }
     }
 
     public function delete($id)
     {
         if($this->journalRepository->delete($id))
-        return redirect()
-                    ->route('journal.index')
-                    ->with('level', 'success')
-                    ->with('message', 'Journal was successfully deleted'); 
+        {
+            Alert::success('Congratulations!', 'Journal has been successfully deleted.');
+            return redirect()
+                    ->route('journal.index'); 
+        }
+        
     }
 
     public function exportPDF($id)
@@ -126,12 +126,16 @@ class JournalController extends Controller
                     ->orderBy('created_at', 'DESC')->simplePaginate(10);
         
         if(count($journals) > 0)
-            return view('journal.index',['journals' => $journals])
-                        ->with('level', 'success')
-                        ->with('message', 'Found ' . count($journals) . ' results');
-        else 
-            return view ('journal.index',['journals' => $journals])
-                        ->with('level', 'danger')
-                        ->with('message', 'Cannot find any result');      
+        {
+            $message = 'Found ' . count($journals) . ' result(s).';
+            Alert::success('Your result: ', $message);
+
+            return view('journal.index',['journals' => $journals]);
+        }
+        else
+        {
+            Alert::error('Oops...!', 'Cannot find any result. Try another!');
+            return view ('journal.index',['journals' => $journals]);      
+        }
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\CreateCommentRequest;
 use App\Comment;
 use App\Journal;
 use Auth;
+use Alert;
 
 class CommentsController extends Controller
 {
@@ -49,9 +50,10 @@ class CommentsController extends Controller
             $comment->user_id = $user->id;
             
             $journal->comments()->save($comment);
-            return redirect()->route('journal.show', ['journal' => $journal->id])
-                    ->with('level', 'success')
-                    ->with('message', 'Comment was successfully added');
+            Alert::success('Congratulations!', 'Thanks for your comment.');
+            
+            return redirect()->route('journal.show', ['journal' => $journal->id]);
+                    
         }
         
     }
@@ -90,13 +92,18 @@ class CommentsController extends Controller
         $journal = Journal::find($request->journal_id);
 
         if(Comment::find($request->comment_id)->update($request))
-            return redirect()->route('journal.show', ['journal' => $journal->id])
-                    ->with('level', 'success')
-                    ->with('message', 'Comment was successfully updated');
+        {
+            Alert::success('Congratulations!', 'Your comment has been successfully updated.');
+
+            return redirect()->route('journal.show', ['journal' => $journal->id]);
+        }    
+            
         else
-            return redirect()->route('journal.show', ['journal' => $journal->id])
-                    ->with('level', 'danger')
-                    ->with('message', 'Comment was not updated');
+        {
+            Alert::error('Oops..!', 'Your comment has not been updated.');
+            
+            return redirect()->route('journal.show', ['journal' => $journal->id]);                  
+        }
 
 
 
@@ -113,13 +120,18 @@ class CommentsController extends Controller
         $journal = Journal::find($request->journal_id);
 
         if(Comment::find($request->comment_id)->delete())
-            return redirect()->route('journal.show', ['journal' => $journal->id])
-                    ->with('level', 'success')
-                    ->with('message', 'Comment was successfully deleted');
+        {
+            Alert::success('Congratulations!', 'Your comment has been successfully deleted.');
+            
+            return redirect()->route('journal.show', ['journal' => $journal->id]);                    
+        }
+
         else
-            return redirect()->route('journal.show', ['journal' => $journal->id])
-                    ->with('level', 'danger')
-                    ->with('message', 'Comment was not deleted');
+        {
+            Alert::error('Oops...!', 'Your comment has not been deleted.');
+           
+            return redirect()->route('journal.show', ['journal' => $journal->id]);                 
+        }
 
     }
 }

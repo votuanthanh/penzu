@@ -14,7 +14,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">SHOW A JOURNAL</div>
-
+                
                 <div class="card-body">
                     <form method="GET" enctype="multipart/form-data" action="{{ route('journal.show', $journal->id) }}">
                         @csrf
@@ -54,7 +54,7 @@
                     <hr />
                     
 
-                    <h4>Display Comments</h4>
+                    <h4>Display Comments ({{ $journal->comments->count()}})</h4>
 
                         @forelse($journal->comments->sortByDesc('created_at') as $comment)
 

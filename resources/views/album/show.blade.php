@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
     <!-- Font -->
 
@@ -35,6 +36,7 @@
 
 </head>
 <body >
+    @include('sweetalert::alert')
 
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
@@ -274,10 +276,37 @@
                                 
                                 @if(Auth::check())
                                     @if(Auth::user()->id == $album->user_id)
-                                    <li><form action="{{route('image.delete', $image->id)}}" method="post">
+                                    <li><form id="confirm_delete" action="{{route('image.delete', $image->id)}}" method="post">
                                     {{ csrf_field() }}
                                     @method('delete')
-                                    <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger mr-1">Delete</button></li>                                  
+                                    <button type="submit" id="btnDelete" class="btn btn-danger mr-1">Delete</button></form></li>     
+                                    <script>
+                                        $( "#confirm_delete" ).submit(function( event ) {
+                                            event.preventDefault();
+                                            swal({
+                                                title: 'Are you sure?',
+                                                text: "Please click confirm to delete this item",
+                                                type: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Yes, delete it!',
+                                                cancelButtonText: 'No, cancel!',
+                                                confirmButtonClass: 'btn btn-success',
+                                                cancelButtonClass: 'btn btn-danger',
+                                                buttonsStyling: true,
+                                                closeOnConfirm: false
+                                            }).then(function() {
+                                                    $("#confirm_delete").off("submit").submit();
+                                            }, function(dismiss) {
+                                                // dismiss can be 'cancel', 'overlay',
+                                                // 'close', and 'timer'
+                                                if (dismiss === 'cancel') {
+                                                    swal('Cancelled', 'Delete Cancelled :)', 'error');
+                                                }
+                                            })
+                                        });
+                                    </script>                            
                                     @endif
                                 @endif
                             </ul>

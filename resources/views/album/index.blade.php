@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  	<script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
 	<!-- Font -->
 
@@ -35,6 +36,7 @@
 
 </head>
 <body >
+	@include('sweetalert::alert')
 
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">

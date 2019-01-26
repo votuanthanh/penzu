@@ -9,6 +9,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Socialite;
 use Auth;
+use Alert;
 
 class SocialAuthController extends Controller
 {
@@ -33,7 +34,7 @@ class SocialAuthController extends Controller
         // dd($user);
  
         Auth::login($authUser, true);
- 
+        Alert::toast('Login successfully.', 'success', 'top-right');
         return redirect()->route('journal.index');
     }
  

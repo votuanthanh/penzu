@@ -13,6 +13,7 @@ use App\Album;
 use App\Repositories\Eloquent\AlbumRepository;
 use App\Repositories\Contracts\AlbumRepositoryInterface;
 use Auth;
+use Alert;
 
 class AlbumController extends Controller
 {
@@ -52,16 +53,13 @@ class AlbumController extends Controller
             
             if ($user->albums()->save($album))
             {
-                return redirect()
-                    ->route('album.index')
-                    ->with('level', 'success')
-                    ->with('message', 'Album was successfully created');
+                Alert::success('Congratulations!', 'Album was successfully created');
+                return redirect()->route('album.index');
+                    
             }
         } catch (\Exception $e) {
-            return redirect()
-                    ->route('album.index')
-                    ->with('level', 'danger')
-                    ->with('message', 'Album was not created');
+            Alert::error('Oops.. !', 'Album was not created');
+            return redirect()->route('album.index');   
         }
     }
 
@@ -76,25 +74,25 @@ class AlbumController extends Controller
     {
         try {
             if ($this->albumRepository->update($request->all(), $id))
-                return redirect()
-                        ->route('album.index')
-                        ->with('level', 'success')
-                        ->with('message', 'Album was successfully updated');
+            {
+                Alert::success('Congratulations!', 'Album was successfully updated');
+                return redirect()->route('album.index');
+            }
 
         } catch (\Exception $e) {
-            return redirect()
-                ->route('album.index')
-                ->with('level', 'danger')
-                ->with('message', 'Album was not updated');
+            Alert::error('Oops.. !', 'Album was not updated');
+
+            return redirect()->route('album.index');         
         }
     }
 
     public function delete($id)
     {
         if($this->albumRepository->delete($id))
-        return redirect()
-                    ->route('album.index')
-                    ->with('level', 'success')
-                    ->with('message', 'Album was successfully deleted'); 
+        {
+            Alert::success('Congratulations!', 'Album was successfully deleted');
+            return redirect()->route('album.index');
+                    
+        }
     }
 }

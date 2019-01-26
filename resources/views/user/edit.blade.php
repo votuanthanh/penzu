@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+@push('style')
+    <link rel="stylesheet" type="text/css" href="{{ asset('journal-css/comment-journal.css') }}">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+@endpush
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -35,13 +40,13 @@
                         </div><!-- /thumbnail -->
                     </div><!-- /col-sm-1 -->
                     <!--  -->
-
+                    <div class="col-sm-9">
                     <form method="POST" action="{{ route('user.update') }} " enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label text-md-right" for="first_name">First name</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" required autofocus>
                                 @if ($errors->has('first_name'))
                                     <span class="invalid-feedback" role="alert">
@@ -54,7 +59,7 @@
                             
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label text-md-right" for="last_name">Last name</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" required autofocus>
                                 @if ($errors->has('last_name'))
                                     <span class="invalid-feedback" role="alert">
@@ -66,14 +71,14 @@
                         
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label text-md-right" for="birthday">Birthday</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input class="form-control" id="birthday" type="date" name="birthday" value="{{ $user->birthday }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label text-md-right" for="gender">Gender</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label class="radio-container m-r-45">Male
                                     <input type="radio" value="1" name="gender" {{$user->gender == 1 ? 'checked' : ''}}>
                                     <span class="checkmark"></span>
@@ -87,7 +92,7 @@
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label text-md-right" for="address">Address</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input class="form-control" type="text" name="address" id="address" value="{{ $user->address }}">
                             </div>
                         </div>
@@ -118,6 +123,7 @@
                         </div>
                         
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
