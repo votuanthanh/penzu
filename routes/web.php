@@ -51,11 +51,23 @@ Route::group(['prefix' => 'image', 'middleware' => ['auth']], function() {
 
 Route::get('/album', 'AlbumController@index')->name('album.index');
 Route::get('album/show/{id}', 'AlbumController@show')->name('album.show');
+
 Route::group(['prefix' => 'user', 'middleware' => ['auth']], function() {
     Route::get('edit', 'UserController@edit')->name('user.edit');
     Route::put('update', 'UserController@update')->name('user.update');
 
 });
+// user logout
+Route::get('/logout', function(){
+    if (Auth::check())
+    {
+        
+        Auth::logout();
+    }
+    toast('Logged out! See ya...', 'error', 'top-right');
+    
+    return redirect('/');
+})->name('user.logout');
 
 Route::group(['prefix' => 'comments', 'middleware' => ['auth']], function() {
     Route::post('/', 'CommentsController@store')->name('comments.store');
