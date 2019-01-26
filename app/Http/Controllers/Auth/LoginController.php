@@ -26,7 +26,7 @@ class LoginController extends Controller
      * @var string
      */
     protected function redirectTo () {
-        // alert()->success('Login successfully','Now you can add your journal at the plus button.');
+
         toast('Login successfully.','success','top-right');
         return '/';
     }
