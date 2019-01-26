@@ -28,7 +28,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected function redirectTo () {
+        toast('Registered successfully! Now you can create your journal.','success','top-right');
+        return '/';
+    }
 
     /**
      * Create a new controller instance.

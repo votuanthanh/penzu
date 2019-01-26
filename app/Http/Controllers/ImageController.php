@@ -8,6 +8,8 @@ use App\Album;
 use App\Image;
 use Auth;
 use File;
+use Alert;
+
 class ImageController extends Controller
 {
 
@@ -30,19 +32,21 @@ class ImageController extends Controller
         $fileUpload->move($path, $nameFileUpload);
         $image->description = $nameFileUpload;
         $image->album_id = $album;
-        // dd($path);
-        $image->save();
-       //	try {
-        	// if ($album->images()->save($image))
-         //    {
+       
+       	try {
+        	if ($image->save())
+            {
+                Alert::success('Congratulations!', 'Image has been successfully added');
+
                 return redirect()
-                	->route('album.show', ['id' => $image->album_id])
-                    ->with('level', 'success')
-                    ->with('message', 'Image was successfully added');
-            //}
-        // } catch (\Exception $e) {
-        //      dd($e);
-        // }
+                	->route('album.show', ['id' => $image->album_id]);
+            }
+        } catch (\Exception $e) {
+            Alert::error('Oops...!', 'Image has not been added');
+                
+            return redirect()
+                ->route('album.show', ['id' => $image->album_id]);
+        }
     }
 
     public function delete($id)
@@ -55,9 +59,8 @@ class ImageController extends Controller
             File::delete($path.'/'.$image->description);
         }
 
-    	return redirect()
-            	->route('album.show', ['id' => $image->album_id])
-                ->with('level', 'success')
-                ->with('message', 'Image was successfully deleted');
+        Alert::success('Congratulations!', 'Your image has been successfully deleted');
+        // Alert::warning('Are you sure?', 'This will delete your image.')->persistent(true, true);
+    	return redirect()->route('album.show', ['id' => $image->album_id]);
     }
 }

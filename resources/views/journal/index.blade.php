@@ -8,7 +8,7 @@
 	<meta name="google-site-verification" content="F2_83TqAMr6kRJDU-qfKLnqP91vbMPecpD_r3JtVKtk" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-
+  	<script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 	<!-- Font -->
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
@@ -36,7 +36,7 @@
 	
 </head>
 <body>
-
+	@include('sweetalert::alert')
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
         <div class="container">
             <a class="navbar-brand" href="{{ route('journal.index') }}">

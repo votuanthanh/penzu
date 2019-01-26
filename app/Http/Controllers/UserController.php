@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
 use Auth;
 use File;
+Use Alert;
 
 class UserController extends Controller
 {
@@ -14,18 +15,6 @@ class UserController extends Controller
         $user = Auth::user();
         
         return view('user.edit', ['user' => $user]);
-    }
-
-    public function deleteAvatar($user)
-    {
-        $path = public_path('/images/avatarImages');
-        
-        if(File::exists($path.'/'.$user->avatar)) {
-            
-            return true;
-        }
-
-        return false;
     }
 
     public function update(Request $request)
@@ -49,11 +38,10 @@ class UserController extends Controller
             }
            
 
-            $user->update($request->all());   
-            return redirect()
-                ->route('user.edit')
-                ->with('level', 'success')
-                ->with('message', 'Your information was successfully updated');
+            $user->update($request->all());
+            Alert::success('Congratulations!', 'Your information has been successfully updated.');
+
+            return redirect()->route('user.edit');
         }
     }
 

@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -79,6 +80,7 @@
         <main class="py-4" style="background-image: url('../journal-css/images/atmosphere-background.jpg');">
             @yield('content')
             @stack('style')
+            @include('sweetalert::alert')
         </main>
     </div>
 </body>
