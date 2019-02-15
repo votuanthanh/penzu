@@ -100,7 +100,7 @@ class CommentsController extends Controller
             
         else
         {
-            Alert::error('Oops..!', 'Your comment has not been updated.');
+            Alert::error('Oops...!', 'Your comment has not been updated.');
             
             return redirect()->route('journal.show', ['journal' => $journal->id]);                  
         }
